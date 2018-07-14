@@ -3,8 +3,19 @@ package com.jm.tracker.obj;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table( name = "TBL_USER" )
 public class UserObj {
 
+	
 	private int userId;
 	private String username;
 	private String password;
@@ -12,6 +23,10 @@ public class UserObj {
 	
 	List<TaskObj> tasks;
 
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	@Column(name = "USER_ID")
 	public int getUserId() {
 		return userId;
 	}
@@ -20,6 +35,7 @@ public class UserObj {
 		this.userId = userId;
 	}
 
+	@Column(name = "USER_NAME")
 	public String getUsername() {
 		return username;
 	}
@@ -28,6 +44,7 @@ public class UserObj {
 		this.username = username;
 	}
 
+	@Column(name = "USER_NAME")
 	public String getPassword() {
 		return password;
 	}

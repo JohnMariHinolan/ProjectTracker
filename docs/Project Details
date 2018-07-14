@@ -1,0 +1,37 @@
+Main Objectives:
+
+- To create a project tracker app that tracks the progress of a task
+- Able to create task and subtask
+- Able to persist data
+- Use modern techniques 
+	- Hibernate for database mapping, 
+	- Spring MVC for the web Integration
+	- Java 8 for the main backend language
+	- Angular js 4 for presenting the front end
+	- Github for repo
+	- JUnit for testing 
+	- Add android app 
+- Able to be integrated to other project (User should not be a hard requirement but ID is necessary)
+
+Optional:
+
+- Able to alert user if deadline is near
+- API extensible 
+
+Testing plans:
+
+CRUD : User 
+CRUD : Task (Should be independent to the user)
+
+- Create a subtask()
+- Delete a subtask (Include all subtask of the task created)
+- Adjust subtask(Project subtask should adjust to the edited project accordingly)
+
+
+
+
+
+
+
+
+

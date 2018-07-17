@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,7 +22,9 @@ public class UserObj {
 	private String password;
 	
 	
-	List<TaskObj> tasks;
+	private List<TaskObj> tasks;
+	
+	public UserObj() {}
 
 	@Id
 	@GeneratedValue(generator="increment")
@@ -44,7 +47,7 @@ public class UserObj {
 		this.username = username;
 	}
 
-	@Column(name = "USER_NAME")
+	@Column(name = "USER_PWD")
 	public String getPassword() {
 		return password;
 	}
@@ -53,7 +56,7 @@ public class UserObj {
 		this.password = password;
 	}
 
-	
+	@Transient
 	public List<TaskObj> getTasks() {
 		return tasks;
 	}

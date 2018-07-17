@@ -1,8 +1,6 @@
 CREATE DATABASE PROJECT_TRACKER;
 
-Table 
-TBL_TASK
-TaskId varchar
+use project_tracker;
 
 
 CREATE TABLE TBL_TASK (
@@ -24,11 +22,10 @@ CREATE TABLE `TBL_USER`
 );
 
 ALTER TABLE TBL_TASK
-  ADD USER_ID INT(5) unsigned not null;
+  ADD COLUMN USER_ID VARCHAR(15) unsigned not null;
   
  ALTER TABLE TBL_USER
   DROP TASK_ID ;
-  
- ALTER TABLE TBL_TASK
-ALTER COLUMN USER_ID VARCHAR(15);
+  // MODIFY for editing column
+
   

@@ -8,13 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.jm.tracker.interfaceUtil.CalculateTime;
 
 
 @Entity
 @Table( name = "TBL_TASK" )
-public class TaskObj {
+public class TaskObj implements CalculateTime {
 
 	private int taskId;
 	private String taskName;
@@ -22,9 +25,14 @@ public class TaskObj {
 	private String userId;
 	private Date timeStarted;
 	private Date timeFinished;
+	// Add to DB later
+	private Date targetDate;
+	
+	// not in DB
 	private List<TaskObj> tasks;
-	
-	
+
+	public TaskObj() {}
+
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
@@ -67,7 +75,7 @@ public class TaskObj {
 	public void setTimeFinished(Date timeFinished) {
 		this.timeFinished = timeFinished;
 	}
-	
+	@Transient
 	public List<TaskObj> getTasks() {
 		return tasks;
 	}
@@ -83,5 +91,22 @@ public class TaskObj {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+
+
+	@Transient
+	public Date getTargetDate() {
+		return targetDate;
+	}
+
+	public void setTargetDate(Date targetDate) {
+		this.targetDate = targetDate;
+	}
 	
+	
+@Transient
+	public long getRemainingTime() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

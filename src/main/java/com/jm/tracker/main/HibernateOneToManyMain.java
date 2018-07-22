@@ -4,17 +4,29 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.jm.tracker.obj.RemarksObj;
 import com.jm.tracker.obj.TaskObj;
 import com.jm.tracker.util.HibernateUtil;
 
 public class HibernateOneToManyMain {
 
 	public static void main(String[] args) {
-		
+	// TESTING ONLY	
 		TaskObj taskObj = new TaskObj();
 		taskObj.setTaskDesc("A test data");
 		taskObj.setTaskName("Sample data");
 		taskObj.setUserId("TEST_USER");
+		
+		RemarksObj remarks = new RemarksObj();
+		RemarksObj remarks2 =	new RemarksObj();
+		
+		remarks.setRemark("Test Remark");
+		
+		taskObj.addRemark(remarks);
+		
+		
+		remarks2.setRemark("Test Remark2");;
+	taskObj.addRemark(remarks2);
 		
 		
 		SessionFactory sessionFactory = null;

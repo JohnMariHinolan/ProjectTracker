@@ -12,6 +12,9 @@ Main Objectives:
 	- JUnit for testing 
 	- Add android app 
 - Able to be integrated to other project (User should not be a hard requirement but ID is necessary)
+- User are able to create a remarks 
+- remarks can be traced to the user
+- tbls also have remarks 
 
 Optional:
 

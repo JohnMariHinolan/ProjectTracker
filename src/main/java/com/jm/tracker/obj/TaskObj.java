@@ -1,12 +1,18 @@
 package com.jm.tracker.obj;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,11 +31,15 @@ public class TaskObj implements CalculateTime {
 	private String userId;
 	private Date timeStarted;
 	private Date timeFinished;
+	private Set<RemarksObj> getRemarks = new HashSet<RemarksObj>();
+	
 	// Add to DB later
 	private Date targetDate;
 	
 	// not in DB
 	private List<TaskObj> tasks;
+
+
 
 	public TaskObj() {}
 
@@ -103,6 +113,20 @@ public class TaskObj implements CalculateTime {
 		this.targetDate = targetDate;
 	}
 	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "TBL_TASK_REMARKS", joinColumns = { @JoinColumn(name = "TASK_ID") }, inverseJoinColumns = { @JoinColumn(name = "REMARKS_ID") })
+	public Set<RemarksObj> getGetRemarks() {
+		return getRemarks;
+	}
+
+	public void setGetRemarks(Set<RemarksObj> getRemarks) {
+		this.getRemarks = getRemarks;
+	}
+	
+	public void addRemark(RemarksObj remarksObj) {
+		this.getRemarks.add(remarksObj);
+	}
 	
 @Transient
 	public long getRemainingTime() {

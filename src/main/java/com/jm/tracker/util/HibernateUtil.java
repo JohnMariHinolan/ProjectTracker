@@ -5,6 +5,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import com.jm.tracker.obj.RemarksObj;
 import com.jm.tracker.obj.TaskObj;
 import com.jm.tracker.obj.UserObj;
 
@@ -19,6 +20,7 @@ private static SessionFactory sessionFactory;
         	configuration.configure("hibernate.cfg.xml");
         	configuration.addAnnotatedClass(TaskObj.class);
         	configuration.addAnnotatedClass(UserObj.class);
+        	configuration.addAnnotatedClass(RemarksObj.class);
         	System.out.println("Hibernate Configuration loaded");
         	
         	ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

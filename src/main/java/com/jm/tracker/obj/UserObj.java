@@ -1,12 +1,19 @@
 package com.jm.tracker.obj;
 
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,6 +30,7 @@ public class UserObj {
 	
 	
 	private List<TaskObj> tasks;
+	private Set<RemarksObj> getRemarks = new HashSet<RemarksObj>();
 	
 	public UserObj() {}
 
@@ -64,6 +72,20 @@ public class UserObj {
 	public void setTasks(List<TaskObj> tasks) {
 		this.tasks = tasks;
 	}
+	
 
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "TBL_USER_REMARKS", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "REMARKS_ID") })
+	public Set<RemarksObj> getGetRemarks() {
+		return getRemarks;
+	}
+
+	public void setGetRemarks(Set<RemarksObj> getRemarks) {
+		this.getRemarks = getRemarks;
+	}
+	public void addRemark(RemarksObj remarksObj) {
+		this.getRemarks.add(remarksObj);
+	}
 	
 }

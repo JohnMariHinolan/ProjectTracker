@@ -30,6 +30,9 @@ CRUD : Task (Should be independent to the user)
 - Delete a subtask (Include all subtask of the task created)
 - Adjust subtask(Project subtask should adjust to the edited project accordingly)
 
+Oct 14:
+Drop remarks? (Keep it for practice of multiple table, Draw back:remarks cant have replies)
+
 
 
 

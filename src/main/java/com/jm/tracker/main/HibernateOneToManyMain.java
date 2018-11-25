@@ -11,55 +11,61 @@ import com.jm.tracker.util.HibernateUtil;
 public class HibernateOneToManyMain {
 
 	public static void main(String[] args) {
-	// TESTING ONLY	
+		// TESTING ONLY
 		TaskObj taskObj = new TaskObj();
-		taskObj.setTaskDesc("A test data");
-		taskObj.setTaskName("Sample data");
-		taskObj.setUserId("TEST_USER");
-		
+		taskObj.setTaskDesc("A test data NiV 26");
+		taskObj.setTaskName("Sample data NiV 26");
+		taskObj.setUserId("OCT 14");
+
 		RemarksObj remarks = new RemarksObj();
-		RemarksObj remarks2 =	new RemarksObj();
-		
-		remarks.setRemark("Test Remark");
-		
+		RemarksObj remarks2 = new RemarksObj();
+
+		remarks.setRemark("Test Remark NOV 17");
+
 		taskObj.addRemark(remarks);
-		
-		
-		remarks2.setRemark("Test Remark2");;
-	taskObj.addRemark(remarks2);
-		
-		
+
+		remarks2.setRemark("Test Remark2 NOV 17");
+		;
+		taskObj.addRemark(remarks2);
+
+		TaskObj taskObjChild = new TaskObj();
+		taskObjChild.setTaskDesc("A simpletest for child task");
+
+		taskObjChild.setParentTaskObj(taskObj);
+		taskObjChild.setUserId("UserCH");
+
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		Transaction tx = null;
-		
-		try{
-			//Get Session
+
+		try {
+			// Get Session
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.getCurrentSession();
 			System.out.println("Session created");
-			//start transaction
+			// start transaction
 			tx = session.beginTransaction();
-			
-			//Save the Model objects
+
+			// Save the Model objects
 			session.save(taskObj);
-//			session.save(item1);
-//			session.save(item2);
-			
-			//Commit transaction
+			session.save(taskObjChild);
+			// session.save(item1);
+			// session.save(item2);
+
+			// Commit transaction
 			tx.commit();
-			System.out.println("Cart ID="+taskObj.getTaskId());
-			
-			}catch(Exception e){
-				System.out.println("Exception occured. "+e.getMessage());
-				e.printStackTrace();
-			}finally{
-				if(!sessionFactory.isClosed()){
-					System.out.println("Closing SessionFactory");
-					sessionFactory.close();
-				}
+			System.out.println("Cart ID=" + taskObj.getTaskId());
+
+		} catch (Exception e) {
+			System.out.println("Exception occured. " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			if (!sessionFactory.isClosed()) {
+				System.out.println("Closing SessionFactory");
+				sessionFactory.close();
 			}
-		
+		}
+
 	}
 
 }

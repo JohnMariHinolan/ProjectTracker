@@ -21,31 +21,24 @@ public class WelcomeController {
 	}
 
 	@GetMapping("/home")
-    public String home(Map<String, Object> model) {
+	public String home(Map<String, Object> model) {
 		model.put("message", this.message);
-		return "welcome";
-    }
+		return "/main/home";
+	}
 
-    @GetMapping("/admin")
-    public String admin() {
-        return "/admin";
-    }
+	@GetMapping("/admin")
+	public String admin() {
+		return "/admin";
+	}
 
-    @GetMapping("/user")
-    public String user() {
-        return "/user";
-    }
+	@GetMapping("/user")
+	public String user() {
+		return "/user";
+	}
 
-    @GetMapping("/about")
-    public String about() {
-        return "/about";
-    }
+	@GetMapping("/about")
+	public String about() {
+		return "/about";
+	}
 
-    @GetMapping("/login")
-    public String login() {
-        return "/login";
-    }
-
-   
-	
 }

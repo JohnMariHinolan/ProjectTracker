@@ -4,10 +4,18 @@
   <artifactId>ProjectTracker</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  <repositories>
+  <!-- ... possibly other repository elements ... -->
+  <repository>
+    <id>spring-milestone</id>
+    <name>Spring Milestone Repository</name>
+    <url>https://repo.spring.io/milestone</url>
+  </repository>
+</repositories>
   <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.2.RELEASE</version>
+		<version>1.5.10.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -16,11 +24,22 @@
   
   <dependencies>
   
-  <!-- Hibernate framework -->
+  <!-- Hibernate framework 
 	<dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-core</artifactId>
     <version>5.3.1.Final</version>
+</dependency>
+	
+	-->
+	<!-- For Spring -->
+	<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 	
 	
@@ -96,12 +115,31 @@
 			<scope>provided</scope>
 		</dependency>
 
-<!-- Spring Security 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+<!-- Spring Security -->
+         <!-- ... other dependency elements ... -->
+         <!--  
+  <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-web</artifactId>
+	<version>5.1.0.RELEASE</version>
+  </dependency>
+  <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-config</artifactId>
+	<version>5.1.0.RELEASE</version>
+  </dependency>
+  <dependency>
+	<groupId>org.thymeleaf.extras</groupId>
+	<artifactId>thymeleaf-extras-springsecurity4</artifactId>	
+	<version>2.1.2.RELEASE</version>
+  </dependency>
 -->
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
 		<!-- JSTL for JSP -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -130,7 +168,10 @@
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7</version>
 		</dependency>
-
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-jwt</artifactId>
+</dependency>
 
   </dependencies>
   <build>

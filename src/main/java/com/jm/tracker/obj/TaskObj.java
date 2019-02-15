@@ -13,11 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jm.tracker.interfaceUtil.CalculateTime;
 
 @Entity
@@ -32,6 +34,7 @@ public class TaskObj implements CalculateTime {
 	private Date timeFinished;
 	private Set<RemarksObj> getRemarks = new HashSet<RemarksObj>();
 
+	private TaskInfo taskInfo;
 	private TaskObj parentTaskObj;
 
 	private Set<TaskObj> childTaskSet = new HashSet<TaskObj>();
@@ -39,6 +42,22 @@ public class TaskObj implements CalculateTime {
 	private Date targetDate;
 
 	public TaskObj() {
+
+	}
+
+	// @JoinColumn(name = "taskInfoId")
+	@OneToOne(mappedBy = "taskObj", cascade = CascadeType.ALL)
+
+	public TaskInfo getTaskInfo() {
+		return taskInfo;
+	}
+
+	public void setTaskInfo(TaskInfo taskInfo) {
+		this.taskInfo = taskInfo;
+	}
+
+	public TaskObj(int taskId) {
+		this.taskId = taskId;
 	}
 
 	@Id
@@ -130,11 +149,13 @@ public class TaskObj implements CalculateTime {
 
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "PARENT_TASK")
+
 	public TaskObj getParentTaskObj() {
 		return this.parentTaskObj;
 	}
 
 	@OneToMany(mappedBy = "parentTaskObj")
+	@JsonIgnore
 	public Set<TaskObj> getChildTaskSet() {
 		return childTaskSet;
 	}
@@ -159,26 +180,26 @@ public class TaskObj implements CalculateTime {
 		return isSuccess;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + taskId;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TaskObj other = (TaskObj) obj;
-		if (taskId != other.taskId)
-			return false;
-		return true;
-	}
+	// @Override
+	// public int hashCode() {
+	// final int prime = 31;
+	// int result = 1;
+	// result = prime * result + taskId;
+	// return result;
+	// }
+	//
+	// @Override
+	// public boolean equals(Object obj) {
+	// if (this == obj)
+	// return true;
+	// if (obj == null)
+	// return false;
+	// if (getClass() != obj.getClass())
+	// return false;
+	// TaskObj other = (TaskObj) obj;
+	// if (taskId != other.taskId)
+	// return false;
+	// return true;
+	// }
 
 }

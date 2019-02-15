@@ -33,7 +33,14 @@ CRUD : Task (Should be independent to the user)
 Oct 14:
 Drop remarks? (Keep it for practice of multiple table, Draw back:remarks cant have replies)
 
+Do steps:
 
+Finish Hibernate Repository 
+Finish Service method
+Finish controller
+Create a microservice
+Create discovery server called eureka
+Zuul for API
 
 
 

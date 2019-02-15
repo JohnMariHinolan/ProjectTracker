@@ -8,50 +8,58 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "TBL_REMARKS" )
+@Table(name = "TBL_REMARKS")
 public class RemarksObj {
 
 	private int remarksId;
 	private String remark;
 	private int likes = 0;
 	private int dislikes = 0;
-	
-	public RemarksObj() {}
-	
+
+	public RemarksObj() {
+	}
+
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	@Column(name = "REMARKS_ID")
+	@JsonIgnore
 	public int getRemarksId() {
 		return remarksId;
 	}
+
 	public void setRemarksId(int remarksId) {
 		this.remarksId = remarksId;
 	}
+
 	@Column(name = "TASK_REMARKS")
 	public String getRemark() {
 		return remark;
 	}
+
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
 	@Column(name = "NUM_LIKES")
 	public int getLikes() {
 		return likes;
 	}
+
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
+
 	@Column(name = "NUM_DISLIKES")
 	public int getDislikes() {
 		return dislikes;
 	}
+
 	public void setDislikes(int dislikes) {
 		this.dislikes = dislikes;
 	}
-	
-	
-	
-	
+
 }
